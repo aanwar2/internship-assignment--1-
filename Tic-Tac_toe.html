@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<script>
+		
+		function play() {
+		
+			if (Win(document.turn)) {
+				alert("Congratulations, " + document.turn + "!  You win!");
+				document.winner = document.turn;
+			} else if (document.turn == "X") {
+				document.turn = "O";
+				
+			} else {
+				document.turn = "X";
+			
+			}
+		}
+
+		function Ele(EachBox) {
+			if (document.winner != null) {
+				alert(document.winner + " is the winner.");
+			} else if (EachBox.innerText == "") {
+				EachBox.innerText = document.turn;
+				play();
+			} else {
+				alert("Can't be used.");
+			}
+		}
+		
+		function Win(move) {
+			var final = false;
+			if (Winning(1, 2, 3, move) || 
+				Winning(4, 5, 6, move) ||
+				Winning(7, 8, 9, move) || 
+				Winning(1, 4, 7, move) ||
+				Winning(2, 5, 8, move) ||
+				Winning(3, 6, 9, move) ||
+				Winning(1, 5, 9, move) ||
+				Winning(3, 5, 7, move)) {
+				
+				final = true;
+			}
+			return final;
+		}
+		
+		function Winning(first, second, third, move) {
+			var final = false;
+			if (dis(first) == move && dis(second) == move && dis(third) == move) {
+				final = true;
+			}
+			return final;
+		}
+
+			function Game() {
+		
+			document.turn = "X";
+			if (Math.random() < 0.5) {
+				document.turn = "O";
+			}
+			document.winner = null;
+			alert(document.turn + " gets to start.");
+		}
+		
+		function dis(number) {
+			return document.getElementById("Element" + number).innerText;
+		}
+		</script>
+		
+	</head>
+
+	<body onload="Game();">
+		<ce><h3>Tic-Tac-Toe<h3></center>
+		<table style="color:red; background-color: yellow; border-color:blue" border="1">
+			<tr>
+				<td style="	width: 60px;height: 60px;text-align: center;" id="Element1" class="EachBox" onclick="Ele(this);"></td>
+				<td style="	width: 60px;height: 60px;text-align: center;" id="Element2" class="EachBox" onclick="Ele(this);"></td>
+				<td style="	width: 60px;height: 60px;text-align: center;" id="Element3" class="EachBox" onclick="Ele(this);"></td>
+			</tr>
+			<tr>
+				<td style="	width: 60px;height: 60px;text-align: center;" id="Element4" class="EachBox" onclick="Ele(this);"></td>
+				<td style="	width: 60px;height: 60px;text-align: center;" id="Element5" class="EachBox" onclick="Ele(this);"></td>
+				<td style="	width: 60px;height: 60px;text-align: center;" id="Element6" class="EachBox" onclick="Ele(this);"></td>
+			</tr>
+			<tr>
+				<td style="	width: 60px;height: 60px;text-align: center;" id="Element7" class="EachBox" onclick="Ele(this);"></td>
+				<td style="	width: 60px;height: 60px;text-align: center;" id="Element8" class="EachBox" onclick="Ele(this);"></td>
+				<td style="	width: 60px;height: 60px;text-align: center;" id="Element9" class="EachBox" onclick="Ele(this);"></td>
+			</tr>
+		</table>
+	</body>
+</html>
